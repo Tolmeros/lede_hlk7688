@@ -20,6 +20,7 @@ all5002)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x10000" "0x10000"
 	;;
 br-6425|\
+hlk7688a|\
 linkits7688|\
 linkits7688d|\
 miwifi-nano|\
