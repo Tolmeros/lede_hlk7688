@@ -350,7 +350,7 @@ ramips_setup_macs()
 		wan_mac=$(mtd_get_mac_binary factory 28)
 		;;
 	hlk7688a | \
-	linkits7688 | \	    
+	linkits7688 | \
 	linkits7688d)
 		wan_mac=$(mtd_get_mac_binary factory 4)
 		lan_mac=$(mtd_get_mac_binary factory 46)
