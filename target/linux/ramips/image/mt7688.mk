@@ -27,10 +27,10 @@ define Device/HLK7688A
                 kmod-fs-btrfs kmod-fs-nfs \
                 kmod-fs-vfat kmod-fs-exfat kmod-fs-ext4 block-mount e2fsprogs \
                 kmod-i2c-core kmod-i2c-ralink \
-                kmod-nls-base kmod-nls-cp437 kmod-nls-iso8859-1 kmod-nls-utf8 \
+                kmod-nls-base kmod-nls-cp437 kmod-nls-cp936 kmod-nls-cp950 kmod-nls-iso8859-1 kmod-nls-utf8 \
                 kmod-usb-storage kmod-usb-acm kmod-usb-serial kmod-usb-serial-ch341 \
                 kmod-usb-serial-ftdi kmod-usb-serial-pl2303 kmod-usb-serial-wwan \
-                maccalc reg mtk-wifi iperf3 lftp \
+                maccalc reg mtk-wifi iperf3 lftp htop\
                 luci luci-i18n-base-zh-cn luci-proto-3g \
                 btrfs-progs dosfsck mkdosfs
 endef
