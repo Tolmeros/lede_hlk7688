@@ -130,9 +130,6 @@ ramips_board_detect() {
 	*"DCS-930L B1")
 		name="dcs-930l-b1"
 		;;
-	*"Digineo AC1200 Pro")
-		name="ac1200pro"
-		;;
 	*"DIR-300 B1")
 		name="dir-300-b1"
 		;;
@@ -219,6 +216,9 @@ ramips_board_detect() {
 		;;
 	*"GL-MT750")
 		name="gl-mt750"
+		;;
+	*"GL-MT300N-V2")
+		name="gl-mt300n-v2"
 		;;
 	*"HC5661")
 		name="hc5661"
@@ -397,8 +397,11 @@ ramips_board_detect() {
 	*"PSG1208")
 		name="psg1208"
 		;;
-	*"PSG1218")
-		name="psg1218"
+	*"PSG1218 rev.A")
+		name="psg1218a"
+		;;
+	*"PSG1218 rev.B")
+		name="psg1218b"
 		;;
 	*"PSR-680W"*)
 		name="psr-680w"
@@ -436,6 +439,9 @@ ramips_board_detect() {
 	*"RT5350F-OLinuXino-EVB")
 		name="rt5350f-olinuxino-evb"
 		;;
+	*"RT-AC51U")
+		name="rt-ac51u"
+		;;
 	*"RT-G32 B1")
 		name="rt-g32-b1"
 		;;
@@ -466,6 +472,9 @@ ramips_board_detect() {
 	*"SL-R7205"*)
 		name="sl-r7205"
 		;;
+	*"TEW-638APB v2")
+		name="tew-638apb-v2"
+		;;
 	*"TEW-691GR")
 		name="tew-691gr"
 		;;
@@ -480,6 +489,9 @@ ramips_board_detect() {
 		;;
 	*"UBNT-ERX")
 		name="ubnt-erx"
+		;;
+	*"UBNT-ERX-SFP")
+		name="ubnt-erx-sfp"
 		;;
 	*"UR-326N4G")
 		name="ur-326n4g"
@@ -646,17 +658,32 @@ ramips_board_detect() {
 	*"ZBT-WA05")
 		name="zbt-wa05"
 		;;
-	*"ZBT-WE826")
-		name="zbt-we826"
+	*"ZBT-WE1326")
+		name="zbt-we1326"
+		;;
+	*"ZBT-WE2026")
+		name="zbt-we2026"
+		;;
+	*"ZBT-WE826 (16M)")
+		name="zbt-we826-16M"
+		;;
+	*"ZBT-WE826 (32M)")
+		name="zbt-we826-32M"
 		;;
 	*"ZBT-WG2626")
 		name="zbt-wg2626"
 		;;
-	*"ZBT-WG3526")
-		name="zbt-wg3526"
+	*"ZBT-WG3526 (16M)")
+		name="zbt-wg3526-16M"
+		;;
+	*"ZBT-WG3526 (32M)")
+		name="zbt-wg3526-32M"
 		;;
 	*"ZBT-WR8305RT")
 		name="zbt-wr8305rt"
+		;;
+	*"ZyXEL Keenetic")
+		name="kn"
 		;;
 	*"ZyXEL Keenetic Omni")
 		name="kn_rc"
@@ -690,5 +717,5 @@ ramips_board_name() {
 	[ -f /tmp/sysinfo/board_name ] && name=$(cat /tmp/sysinfo/board_name)
 	[ -z "$name" ] && name="unknown"
 
-	echo "${name%-[0-9]*M}"
+	echo "${name}"
 }

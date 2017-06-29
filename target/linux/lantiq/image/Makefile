@@ -20,9 +20,8 @@ else
   UBIFS_OPTS := -m 2048 -e 126KiB -c 4096
 endif
 
-define Build/eva-image
-	lzma2eva $(KERNEL_LOADADDR) $(KERNEL_LOADADDR) $@ $@.new
-	( dd if=$@.new bs=64k conv=sync; cat ./eva.dummy.squashfs; ) > $@
+define Build/append-avm-fakeroot
+	cat ./eva.dummy.squashfs >> $@
 endef
 
 define Build/dgn3500-sercom-footer
@@ -104,7 +103,33 @@ endef
 
 define Device/AVM
   KERNEL := kernel-bin | append-dtb | lzma | eva-image
+  IMAGE/sysupgrade.bin := append-kernel | pad-to 64k | append-avm-fakeroot | \
+	append-rootfs | pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
 endef
+
+ifeq ($(SUBTARGET),ase)
+
+define Device/ALL0333CJ
+  IMAGE_SIZE := 3700k
+  DEVICE_DTS := ALL0333CJ
+  DEVICE_TITLE := Allnet ALL0333CJ
+  DEVICE_PACKAGES := kmod-ltq-adsl-ase kmod-ltq-adsl-ase-mei \
+	kmod-ltq-adsl-ase-fw-b kmod-ltq-atm-ase \
+	ltq-adsl-app ppp-mod-pppoe
+endef
+TARGET_DEVICES += ALL0333CJ
+
+define Device/DGN1000B
+  IMAGE_SIZE := 6000k
+  DEVICE_DTS := DGN1000B
+  DEVICE_TITLE := Netgear DGN1000B
+  DEVICE_PACKAGES := kmod-ltq-adsl-ase kmod-ltq-adsl-ase-mei \
+	kmod-ltq-adsl-ase-fw-b kmod-ltq-atm-ase \
+	ltq-adsl-app ppp-mod-pppoe
+endef
+TARGET_DEVICES += DGN1000B
+
+endif
 
 ifeq ($(SUBTARGET),xway_legacy)
 

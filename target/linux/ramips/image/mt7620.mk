@@ -33,7 +33,9 @@ define Device/ArcherC20i
   SUPPORTED_DEVICES := c20i
   KERNEL := $(KERNEL_DTB)
   KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-header ArcherC20i -c
-  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherC20i -j | append-metadata
+  IMAGE/factory.bin := append-kernel | tplink-header ArcherC20i -j
+  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherC20i -j -s | append-metadata
+  IMAGES += factory.bin
   DEVICE_TITLE := TP-Link ArcherC20i
 endef
 TARGET_DEVICES += ArcherC20i
@@ -43,7 +45,9 @@ define Device/ArcherC50
   SUPPORTED_DEVICES := c50
   KERNEL := $(KERNEL_DTB)
   KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-header ArcherC50 -c
-  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherC50 -j | append-metadata
+  IMAGE/factory.bin := append-kernel | tplink-header ArcherC50 -j
+  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherC50 -j -s | append-metadata
+  IMAGES += factory.bin
   DEVICE_TITLE := TP-Link ArcherC50
 endef
 TARGET_DEVICES += ArcherC50
@@ -53,8 +57,8 @@ define Device/ArcherMR200
   SUPPORTED_DEVICES := mr200
   KERNEL := $(KERNEL_DTB)
   KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-header ArcherMR200 -c
-  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherMR200 -j | append-metadata
-  DEVICE_PACKAGES := kmod-usb2 kmod-usb-net kmod-usb-net-rndis kmod-usb-serial kmod-usb-serial-option adb
+  IMAGE/sysupgrade.bin := append-kernel | tplink-header ArcherMR200 -j -s | append-metadata
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-net kmod-usb-net-rndis kmod-usb-serial kmod-usb-serial-option adb-enablemodem
   DEVICE_TITLE := TP-Link ArcherMR200
 endef
 TARGET_DEVICES += ArcherMR200
@@ -322,12 +326,21 @@ define Device/psg1208
 endef
 TARGET_DEVICES += psg1208
 
-define Device/psg1218
-  DTS := PSG1218
-  DEVICE_TITLE := Phicomm PSG1218
-  DEVICE_PACKAGES := kmod-mt76
+define Device/psg1218a
+  DTS := PSG1218A
+  DEVICE_TITLE := Phicomm PSG1218 rev.Ax
+  DEVICE_PACKAGES := kmod-mt76x2
+  SUPPORTED_DEVICES += psg1218
 endef
-TARGET_DEVICES += psg1218
+TARGET_DEVICES += psg1218a
+
+define Device/psg1218b
+  DTS := PSG1218B
+  DEVICE_TITLE := Phicomm PSG1218 rev.Bx
+  DEVICE_PACKAGES := kmod-mt76x2
+  SUPPORTED_DEVICES += psg1218
+endef
+TARGET_DEVICES += psg1218b
 
 define Device/rp-n53
   DTS := RP-N53
@@ -340,6 +353,14 @@ define Device/rt-n14u
   DEVICE_TITLE := Asus RT-N14u
 endef
 TARGET_DEVICES += rt-n14u
+
+define Device/rt-ac51u
+  DTS := RT-AC51U
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := Asus RT-AC51U
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ehci kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += rt-ac51u
 
 define Device/tiny-ac
   DTS := TINY-AC
@@ -411,6 +432,7 @@ define Device/wt3020-4M
   BLOCKSIZE := 4k
   IMAGE_SIZE := $(ralink_default_fw_size_4M)
   IMAGES += factory.bin
+  SUPPORTED_DEVICES += wt3020
   IMAGE/factory.bin := $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | \
 	poray-header -B WT3020 -F 4M
   DEVICE_TITLE := Nexx WT3020 (4MB)
@@ -420,6 +442,7 @@ TARGET_DEVICES += wt3020-4M
 define Device/wt3020-8M
   DTS := WT3020-8M
   IMAGES += factory.bin
+  SUPPORTED_DEVICES += wt3020
   IMAGE/factory.bin := $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | \
 	poray-header -B WT3020 -F 8M
   DEVICE_TITLE := Nexx WT3020 (8MB)
@@ -467,13 +490,28 @@ define Device/zbt-wa05
 endef
 TARGET_DEVICES += zbt-wa05
 
-define Device/zbt-we826
-  DTS := ZBT-WE826
+define Device/zbt-we2026
+  DTS := ZBT-WE2026
+  DEVICE_TITLE := Zbtlink ZBT-WE2026
+endef
+TARGET_DEVICES += zbt-we2026
+
+define Device/zbt-we826-16M
+  DTS := ZBT-WE826-16M
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
-  DEVICE_TITLE := Zbtlink ZBT-WE826
+  SUPPORTED_DEVICES += zbt-we826
+  DEVICE_TITLE := Zbtlink ZBT-WE826 (16M)
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-mt76 kmod-sdhci-mt7620 
 endef
-TARGET_DEVICES += zbt-we826
+TARGET_DEVICES += zbt-we826-16M
+
+define Device/zbt-we826-32M
+  DTS := ZBT-WE826-32M
+  IMAGE_SIZE := $(ralink_default_fw_size_32M)
+  DEVICE_TITLE := Zbtlink ZBT-WE826 (32M)
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-mt76 kmod-sdhci-mt7620
+endef
+TARGET_DEVICES += zbt-we826-32M
 
 define Device/zbt-wr8305rt
   DTS := ZBT-WR8305RT

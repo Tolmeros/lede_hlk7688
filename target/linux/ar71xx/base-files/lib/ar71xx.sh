@@ -309,6 +309,9 @@ tplink_board_detect() {
 	"49000002")
 		model="TP-Link TL-WDR4900"
 		;;
+	"640000"*)
+		model="TP-Link TL-MR6400"
+		;;
 	"65000002")
 		model="TP-Link TL-WDR6500"
 		;;
@@ -437,6 +440,9 @@ ar71xx_board_detect() {
 	*"AP90Q")
 		name="ap90q"
 		;;
+	*"Archer C25 v1")
+		name="archer-c25-v1"
+		;;
 	*"Archer C5")
 		name="archer-c5"
 		;;
@@ -507,6 +513,9 @@ ar71xx_board_detect() {
 	*"CPE210/220")
 		name="cpe210"
 		tplink_pharos_board_detect
+		;;
+	*"CPE505N")
+		name="cpe505n"
 		;;
 	*"CPE510/520")
 		name="cpe510"
@@ -619,6 +628,9 @@ ar71xx_board_detect() {
 	*"EmbWir-Dorin-Router")
 		name="ew-dorin-router"
 		;;
+	*"ENS202EXT")
+		name="ens202ext"
+		;;
 	*"EPG5000")
 		name="epg5000"
 		;;
@@ -627,6 +639,9 @@ ar71xx_board_detect() {
 		;;
 	*"ESR900")
 		name="esr900"
+		;;
+	*"FRITZ!WLAN Repeater 300E")
+		name="fritz300e"
 		;;
 	*"GL AR150")
 		name="gl-ar150"
@@ -647,6 +662,9 @@ ar71xx_board_detect() {
 		;;
 	*"GL-MIFI")
 		name="gl-mifi"
+		;;
+	*"HiveAP-121")
+		name="hiveap-121"
 		;;
 	*"HiWiFi HC6361")
 		name="hiwifi-hc6361"
@@ -802,8 +820,14 @@ ar71xx_board_detect() {
 	*"Qihoo 360 C301")
 		name="qihoo-c301"
 		;;
+	*"R602N")
+		name="r602n"
+		;;
 	*"R6100")
 		name="r6100"
+		;;
+	*"Rambutan"*)
+		name="rambutan"
 		;;
 	*"RE450")
 		name="re450"
@@ -817,6 +841,9 @@ ar71xx_board_detect() {
 		;;
 	*"Rocket M XW")
 		name="rocket-m-xw"
+		;;
+	*"RouterBOARD 2011iL")
+		name="rb-2011il"
 		;;
 	*"RouterBOARD 2011L")
 		name="rb-2011l"
@@ -905,6 +932,15 @@ ar71xx_board_detect() {
 	*"RouterBOARD 951Ui-2nD")
 		name="rb-951ui-2nd"
 		;;
+	*"RouterBOARD 952Ui-5ac2nD")
+		name="rb-952ui-5ac2nd"
+		;;
+	*"RouterBOARD 962UiGS-5HacT2HnT")
+		name="rb-962uigs-5hact2hnt"
+		;;
+	*"RouterBOARD LHG 5nD")
+		name="rb-lhg-5nd"
+		;;
 	*"RouterBOARD mAP L-2nD")
 		name="rb-mapl-2nd"
 		;;
@@ -992,6 +1028,9 @@ ar71xx_board_detect() {
 	*"TL-MR3420 v2")
 		name="tl-mr3420-v2"
 		;;
+	*TL-MR6400)
+		name="tl-mr6400"
+		;;
 	*"TL-WA701ND v2")
 		name="tl-wa701nd-v2"
 		;;
@@ -1076,6 +1115,9 @@ ar71xx_board_detect() {
 	*"TL-WR720N"*)
 		name="tl-wr720n-v3"
 		;;
+	*"TL-WR740N/ND v6")
+		name="tl-wr740n-v6"
+		;;
 	*"TL-WR741ND")
 		name="tl-wr741nd"
 		;;
@@ -1090,6 +1132,12 @@ ar71xx_board_detect() {
 		;;
 	*"TL-WR810N")
 		name="tl-wr810n"
+		;;
+	*"TL-WR840N v2")
+		name="tl-wr840n-v2"
+		;;
+	*"TL-WR840N v3")
+		name="tl-wr840n-v3"
 		;;
 	*"TL-WR841N v1")
 		name="tl-wr841n-v1"
@@ -1124,6 +1172,9 @@ ar71xx_board_detect() {
 	*"TL-WR941ND")
 		name="tl-wr941nd"
 		;;
+	*"TL-WR942N v1")
+		name="tl-wr942n-v1"
+		;;
 	*"Tube2H")
 		name="tube2h"
 		;;
@@ -1133,7 +1184,7 @@ ar71xx_board_detect() {
 	*"UniFi AP Pro")
 		name="uap-pro"
 		;;
-	*"UniFi-AC-LITE")
+	*"UniFi-AC-LITE/MESH")
 		name="unifiac-lite"
 		;;
 	*"UniFi-AC-PRO")
@@ -1218,6 +1269,9 @@ ar71xx_board_detect() {
 		;;
 	*"WPJ558")
 		name="wpj558"
+		;;
+	*"WPJ563")
+		name="wpj563"
 		;;
 	*"WPN824N")
 		name="wpn824n"
