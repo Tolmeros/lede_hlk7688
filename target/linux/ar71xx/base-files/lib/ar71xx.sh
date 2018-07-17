@@ -221,6 +221,9 @@ tplink_board_detect() {
 	"080200"*)
 		model="TP-Link TL-WR802N"
 		;;
+	"081000"*)
+		model="TP-Link TL-WR810N"
+		;;
 	"083000"*)
 		model="TP-Link TL-WA830RE"
 
@@ -432,6 +435,9 @@ ar71xx_board_detect() {
 		;;
 	*AP121-MINI)
 		name="ap121-mini"
+		;;
+	*"AP121F")
+		name="ap121f"
 		;;
 	*"AP132 reference board")
 		name="ap132"

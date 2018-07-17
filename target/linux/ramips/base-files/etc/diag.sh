@@ -24,6 +24,8 @@ get_status_led() {
 	dir-860l-b1|\
 	e1700|\
 	fonera20n|\
+	firewrt|\
+	hg255d|\
 	kn_rc|\
 	kn_rf|\
 	kng_rc|\
@@ -53,7 +55,8 @@ get_status_led() {
 	jhr-n825r|\
 	mpr-a1|\
 	mpr-a2|\
-	mzk-ex750np)
+	mzk-ex750np|\
+	wn3000rpv3)
 		status_led="$board:red:power"
 		;;
 	ac1200pro|\
@@ -107,6 +110,7 @@ get_status_led() {
 	w502u)
 		status_led="$board:blue:wps"
 		;;
+	d240|\
 	dap-1350|\
 	na930|\
 	pbr-m1|\
@@ -119,7 +123,8 @@ get_status_led() {
 	wli-tx4-ag300n|\
 	wt3020|\
 	y1|\
-	y1s)
+	y1s|\
+	youku-yk1)
 		status_led="$board:blue:power"
 		;;
 	db-wrt01|\
@@ -187,8 +192,7 @@ get_status_led() {
 	px-4885|\
 	re6500|\
 	whr-1166d|\
-	whr-600d|\
-	widora-neo)
+	whr-600d)
 		status_led="$board:orange:wifi"
 		;;
 	mzk-ex300np|\
@@ -225,6 +229,9 @@ get_status_led() {
 	whr-g300n|\
 	wlr-6000)
 		status_led="$board:red:power"
+		;;
+	widora-neo)
+		status_led="widora:orange:wifi"
 		;;
 	wzr-agl300nh)
 		status_led="$board:green:router"

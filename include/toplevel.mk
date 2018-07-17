@@ -23,6 +23,7 @@ HOSTCC ?= $(CC)
 export REVISION
 export SOURCE_DATE_EPOCH
 export GIT_CONFIG_PARAMETERS='core.autocrlf=false'
+export GIT_ASKPASS:=/bin/true
 export MAKE_JOBSERVER=$(filter --jobserver%,$(MAKEFLAGS))
 
 # prevent perforce from messing with the patch utility
@@ -104,7 +105,8 @@ scripts/config/conf:
 	@$(_SINGLE)$(SUBMAKE) -s -C scripts/config conf CC="$(HOSTCC_WRAPPER)"
 
 config: scripts/config/conf prepare-tmpinfo FORCE
-	$< Config.in
+	[ -L .config ] && export KCONFIG_OVERWRITECONFIG=1; \
+		$< Config.in
 
 config-clean: FORCE
 	$(_SINGLE)$(NO_TRACE_MAKE) -C scripts/config clean
@@ -112,7 +114,8 @@ config-clean: FORCE
 defconfig: scripts/config/conf prepare-tmpinfo FORCE
 	touch .config
 	@if [ ! -s .config -a -e $(HOME)/.openwrt/defconfig ]; then cp $(HOME)/.openwrt/defconfig .config; fi
-	$< --defconfig=.config Config.in
+	[ -L .config ] && export KCONFIG_OVERWRITECONFIG=1; \
+		$< --defconfig=.config Config.in
 
 confdefault-y=allyes
 confdefault-m=allmod
@@ -120,13 +123,15 @@ confdefault-n=allno
 confdefault:=$(confdefault-$(CONFDEFAULT))
 
 oldconfig: scripts/config/conf prepare-tmpinfo FORCE
-	$< --$(if $(confdefault),$(confdefault),old)config Config.in
+	[ -L .config ] && export KCONFIG_OVERWRITECONFIG=1; \
+		$< --$(if $(confdefault),$(confdefault),old)config Config.in
 
 menuconfig: scripts/config/mconf prepare-tmpinfo FORCE
 	if [ \! -e .config -a -e $(HOME)/.openwrt/defconfig ]; then \
 		cp $(HOME)/.openwrt/defconfig .config; \
 	fi
-	$< Config.in
+	[ -L .config ] && export KCONFIG_OVERWRITECONFIG=1; \
+		$< Config.in
 
 prepare_kernel_conf: .config FORCE
 
@@ -170,7 +175,7 @@ else
   DOWNLOAD_DIRS = package/download
 endif
 
-download: .config FORCE
+download: .config FORCE $(if $(wildcard $(TOPDIR)/staging_dir/host/bin/flock),,tools/flock/compile)
 	@+$(foreach dir,$(DOWNLOAD_DIRS),$(SUBMAKE) $(dir);)
 
 clean dirclean: .config
@@ -180,6 +185,9 @@ prereq:: prepare-tmpinfo .config
 	@+$(NO_TRACE_MAKE) -r -s $@
 
 check: .config FORCE
+	@+$(NO_TRACE_MAKE) -r -s $@ QUIET= V=s
+
+val.%: FORCE
 	@+$(NO_TRACE_MAKE) -r -s $@ QUIET= V=s
 
 WARN_PARALLEL_ERROR = $(if $(BUILD_LOG),,$(and $(filter -j,$(MAKEFLAGS)),$(findstring s,$(OPENWRT_VERBOSE))))
