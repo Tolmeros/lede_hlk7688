@@ -218,6 +218,10 @@ ifeq ($(SUBTARGET),mt7688)
 include mt7688.mk
 endif
 
+ifeq ($(SUBTARGET),mt7688_hlk7688a)
+include mt7688_hlk7688a.mk
+endif
+
 ifdef LEGACY_DEVICES
 #
 # Generic Targets - only needed for legacy image building code
