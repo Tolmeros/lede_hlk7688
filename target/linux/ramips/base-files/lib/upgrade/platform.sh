@@ -237,6 +237,14 @@ platform_check_image() {
 		nand_do_platform_check "$board" "$1"
 		return $?;
 		;;
+	hlk7688a_router_wllll)
+		[ "$magic" != "27051956" ] && {
+			echo "Invalid image type."
+			return 1
+		}
+		return 0
+		;;
+
 	esac
 
 	echo "Sysupgrade is not yet supported on $board."

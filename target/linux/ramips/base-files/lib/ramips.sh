@@ -223,6 +223,12 @@ ramips_board_detect() {
 	*"HG255D")
 		name="hg255d"
 		;;
+	*"HILINK HLK-7688A")
+		name="hlk7688a"
+		;;
+	*"HLK-7688A router wllll")
+		name="hlk7688a_router_wllll"
+		;;
 	*"HLK-RM04")
 		name="hlk-rm04"
 		;;
@@ -256,9 +262,6 @@ ramips_board_detect() {
 	*"M4 (8M)")
 		name="m4-8M"
 		;;
-	*"HILINK HLK-7688A")
-                name="hlk7688a"
-	        ;;
 	*"MediaTek LinkIt Smart 7688")
 		linkit="$(dd bs=1 skip=1024 count=12 if=/dev/mtd2 2> /dev/null)"
 		if [ "${linkit}" = "LINKITS7688D" ]; then
