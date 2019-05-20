@@ -7,8 +7,8 @@
 define Device/HLK7688A_router_wllll
   DTS := HLK7688A_router_wllll
   IMAGE_SIZE := $(ralink_default_fw_size_32M)
-  SUPPORTED_DEVICES := hlk7688a_router_wllll
-  DEVICE_TITLE := HLK-7688A Router mode eth: WLLLL
+  SUPPORTED_DEVICES := hlk7688a_router_wllll hlk7688a
+  DEVICE_TITLE := HLK-7688A Router mode eth WLLLL
   DEVICE_DESCRIPTION := Router based on Hi-Link HLK-7688A \
   Required routed mode from u-boot \
   MDI 0: WAN, MDI 1..4: LAN

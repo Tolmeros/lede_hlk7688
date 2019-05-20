@@ -4,6 +4,7 @@
 
 #include <dt-bindings/input/input.h>
 
+
 / {
 	compatible = "hlk7688a", "mediatek,hlk7688a", "mediatek,mt7628an-soc";
 	model = "HILINK HLK-7688A";
@@ -13,7 +14,7 @@
 	};
 
 	aliases {
-		# There is no uart0, there is uartlite
+		// There is no uart0, there is uartlite
 		serial0 = &uartlite; 
 	};
 
@@ -31,7 +32,7 @@
 	gpio-leds {
 		compatible = "gpio-leds";
 
-		# green led on module
+		// green led on module
 		wifi {
 			label = "hlk7688a:green:wifi";
 			gpios = <&wgpio 0 0>;
@@ -107,8 +108,8 @@
 
 &wmac {
 	status = "okay";
-	# 18.06.2 VOCORE2.dtsi
-	#ralink,mtd-eeprom = <&factory 0x4>;
+	// 18.06.2 VOCORE2.dtsi
+	//ralink,mtd-eeprom = <&factory 0x4>;
 };
 
 &spi0 {
@@ -129,8 +130,8 @@
 		partition@0 {
 			label = "u-boot";
 			reg = <0x0 0x30000>;
-			# for easy u-boot change
-			#read-only;
+			// for easy u-boot change
+			//read-only;
 		};
 
 		partition@30000 {
@@ -163,23 +164,29 @@
 	status = "okay";
 };
 
-#&i2s {
-#	status = "okay";
-#};
+/*
+&i2s {
+	status = "okay";
+};
+*/
 
-# нужно ли? Он и так вкл.
+// нужно ли? Он и так вкл.
+/*
 &uartlite {
 	status = "okay";	
 };
+*/
 
 &uart1 {
 	status = "okay";
 };
 
-# Disabled, because ethernet port uses
-#&uart2 {
-#	status = "okay";
-#};
+// Disabled, because ethernet port uses
+/*
+&uart2 {
+	status = "okay";
+};
+*/
 
 &pwm {
 	status = "okay";
@@ -187,31 +194,39 @@
 
 &ethernet {
 	mtd-mac-address = <&factory 0x28>;
-	# same as 18.06.2 VOCORE2.dtsi
+	// same as 18.06.2 VOCORE2.dtsi
 };
 
 &esw {
-	# 18.06.2 VOCORE2.dtsi
-	#mediatek,portmap = <0x7>;
-	#mediatek,portdisable = <0x3a>;
+	// 18.06.2 VOCORE2.dtsi
+	/*
+	mediatek,portmap = <0x7>;
+	mediatek,portdisable = <0x3a>;
+	*/
 
-	# 17.01 DIR-620-A1.dts
-	#mediatek,portmap = <0x2f>;
+	// 17.01 DIR-620-A1.dts
+	//mediatek,portmap = <0x2f>;
 
-	# _ DUZUN-DM06.dts
-	# Has two eth ports on board microSD slot
-	#mediatek,portmap = <0x3>;
-	#mediatek,portdisable = <0x3c>;
+	/* 17.01 DUZUN-DM06.dts
+	   Has two eth ports on board microSD slot
+	*/
 
-	# 0x3f = 0b00101111 for test
+	/*
+	mediatek,portmap = <0x3>;
+	mediatek,portdisable = <0x3c>;
+	*/
+
+	// 0x3f = 0b00101111 for test
 	mediatek,portmap = <0x3f>;
 };
 
-# Disabled, because ethernet port uses
-#&sdhci {
-#	status = "okay";
-#	mediatek,cd-high;
-#};
+// Disabled, because ethernet port uses
+/*
+&sdhci {
+	status = "okay";
+	mediatek,cd-high;
+};
+*/
 
 &wmac {
 	status = "okay";
